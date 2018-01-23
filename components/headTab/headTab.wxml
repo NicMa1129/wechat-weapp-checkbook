@@ -1,0 +1,5 @@
+<!--components/headTab/headTab.wxml-->
+<view class='headTab'>
+  <view bindtap='onIncome' class="tab-button button-income {{income ? 'selected' : ''}}">收入    </view>
+  <view bindtap='onExpense' class="tab-button button-expense {{expense ? 'selected' : ''}}">支出</view>
+</view>

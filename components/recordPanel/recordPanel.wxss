@@ -1,0 +1,35 @@
+/* components/recordPanel/recordPanel.wxss */
+@import '../../libs/iconfont.wxss';
+@import '../../common/wxss/base.wxss';
+.record-panel {
+  height: 120rpx;
+  background: #ffffff;
+  margin-left: 20rpx;
+  list-style: none;
+  padding: 16rpx 50rpx 16rpx 10rpx;
+}
+.record-panel.notLast {
+   border-bottom: 1rpx solid #cccccc; 
+}
+.record-panel .label .span {
+  display: inline-block;
+  margin-left: 20rpx;
+}
+.type-name{
+  font-weight: 600;
+  font-size: 36rpx;
+  display: block;
+}
+.bak{
+  font-size: 24rpx;
+  color: #616161;
+  display: block;
+}
+.pay-num{
+  font-weight: 700;
+  font-size: 36rpx;
+}
+.pay-num.is-expense{
+  color: #0ed4c1;
+  font-size: 36rpx;
+}

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "my-headTab": "../../components/headTab/headTab",
+    "my-keyBoard": "../../components/keyBoard/keyBoard"
+  }
+}

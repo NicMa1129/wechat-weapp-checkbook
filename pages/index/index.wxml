@@ -1,0 +1,55 @@
+<!--index.wxml-->
+<view class="container {{hide ? 'hide' : ''}}">
+  <my-header name="{{userInfo.nickName}}"></my-header> 
+  <view class='main-info-panel'>
+    <view class="total-last show">
+      <text class='num'>{{accountList.mainInfo.totalBudget}}</text>
+      <text class='date'>{{accountList.mainInfo.lastDate}}月预算结余</text>
+      <view class='total-last-hidewrap show'>
+        <text class='date1'>{{accountList.mainInfo.lastDate}}月预算结余</text>
+        <text class='num1'>{{accountList.mainInfo.totalBudget}}</text>
+      </view>
+    </view>
+    <view class='income-cost between-flex'>
+      <view class='income'>
+        <text class='num'>{{accountList.mainInfo.income}}</text>
+        <text class='date'>{{accountList.mainInfo.lastDate}}月收入</text>
+      </view>
+      <view class='v-line'></view>
+      <view class='cost'>
+        <text class='num'>{{accountList.mainInfo.expenses}}</text>
+        <text class='date'>{{accountList.mainInfo.lastDate}}月支出</text>
+      </view>
+    </view>
+  </view>
+  <scroll-view class='scroll' scroll-y bindscroll='onScroll'>
+    <view class='list' wx:for="{{accountList.list}}" wx:for-item="block" wx:for-index="idx" wx:key="idx">
+      <view class='list-block'>
+        <view class='header-p'></view>
+        <view class='list-block__header'>
+          <text>{{block.header.date}}</text>
+          <view class='ex-in'>
+            <view class='ex-in__wrap' wx:if="{{block.header.totalIncome !== 0}}">
+              <text class='label'>收入：</text>
+              <text>{{block.header.totalIncome}}</text>
+            </view>
+            <view class='ex-in__wrap' wx:if="{{block.header.totalExpense !== 0}}" class='header-expense'>
+              <text class='label'>支出：</text>
+              <text>{{block.header.totalExpense}}</text>
+            </view>
+          </view>
+        </view>
+        <view class='list-block__body'>
+          <block wx:for="{{block.payList}}" wx:for-index="i" wx:for-item="item" wx:key="i">
+            <my-recordPanel idx="{{idx}}_{{i}}" data="{{item}}" notLast="{{block.payList.length == (i + 1)?false:true}}"></my-recordPanel>
+          </block>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <view class='footer'>
+    <view class='icon iconfont icon-pie1'></view>
+    <view class='write' bindtap='doRecord'>记</view>
+    <view class='icon iconfont icon-ellipsis-v'></view>
+  </view>
+</view>

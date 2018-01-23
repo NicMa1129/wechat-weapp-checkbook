@@ -1,0 +1,46 @@
+<!--components/keyBoard/keyBoard.wxml-->
+<view class="keyboard-container {{unshow ? 'unshow': ''}}">
+  <view class='tag-panel-box'>
+    <view class='tag-panel'>
+      <text class='tag-tool'>标签</text>
+      <view class='tag-list'>
+        <view class='tag-list__wrap'>
+          <text class='tag-sel' wx:for="{{baks}}" wx:for-index="idx" wx:key="idx" bindtap='addBak' data-text="{{item}}">{{item}}</text>
+        </view>
+      </view>
+    </view>
+    <view class='bak-panel between-flex'>
+      <picker class='button' mode="selector" value="{{payMode}}" bindchange='onSelectPayMode' range="{{payModeList}}">{{payModeList[payMode]}}</picker>
+      <picker mode="date" value="{{curSelectDate}}" class='button' bindchange='onSelectDate'>{{dateShow}}</picker>
+      <text class='button'>{{bakShow}}</text>
+    </view>
+  </view>
+  <view class='keyboard-row between-flex'>
+    <view class='keyboard-sel center-flex' data-value="7" bindtap='onTapNum'>7</view>
+    <view class='keyboard-sel center-flex' data-value="8" bindtap='onTapNum'>8</view>
+    <view class='keyboard-sel center-flex' data-value="9" bindtap='onTapNum'>9</view>
+    <view class='keyboard-sel center-flex' bindtap='del'>
+      <view class='i'></view>
+      <view class='back-icon'>x</view>
+    </view>
+  </view>
+  <view class='keyboard-row between-flex'>
+    <view class='keyboard-sel center-flex' data-value="4" bindtap='onTapNum'>4</view>
+    <view class='keyboard-sel center-flex' data-value="5" bindtap='onTapNum'>5</view>
+    <view class='keyboard-sel center-flex' data-value="6" bindtap='onTapNum'>6</view>
+    <view class='keyboard-sel center-flex keyboard-sel-tool' bindtap='plus'>+</view>
+  </view>
+  <view class='keyboard-row between-flex'>
+    <view class='keyboard-sel center-flex' data-value="1" bindtap='onTapNum'>1</view>
+    <view class='keyboard-sel center-flex' data-value="2" bindtap='onTapNum'>2</view>
+    <view class='keyboard-sel center-flex' data-value="3" bindtap='onTapNum'>3</view>
+    <view class='keyboard-sel center-flex keyboard-sel-tool' bindtap='dec'>-</view>
+  </view>
+  <view class='keyboard-row between-flex'>
+    <view class='keyboard-sel center-flex' data-value="." bindtap='onTapNum'>.</view>
+    <view class='keyboard-sel center-flex' data-value="0" bindtap='onTapNum'>0</view>
+    <view class='keyboard-double-sel center-flex keyboard-sel-tool' bindtap='commit'>
+      {{(isPlus || isDec) ? "=" : "OK"}}
+    </view>
+  </view>
+</view>

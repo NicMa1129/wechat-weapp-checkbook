@@ -1,0 +1,18 @@
+/**app.wxss**/
+@import 'libs/iconfont.wxss';
+@import 'common/wxss/base.wxss';
+page {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.container {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box; */
+} 

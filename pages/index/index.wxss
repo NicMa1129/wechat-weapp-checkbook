@@ -1,0 +1,206 @@
+/**index.wxss**/
+ @import "../../libs/iconfont.wxss"; 
+ @import '../../common/wxss/base.wxss';
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24rpx 50rpx;
+  border-top: 1rpx solid rgba(0, 0, 0, .1);
+  box-sizing: border-box;
+  background: #fff;
+}
+.footer .icon-left {
+  margin-left: 30rpx;
+}
+.footer .icon-right {
+  margin-right: 30rpx;
+}
+.footer .write {
+  padding: 10rpx 36rpx;
+  background: #f5a01f;
+  font-size: 44rpx;  
+  color: #fff;
+  box-sizing: border-box;
+  border-radius: 10rpx;
+  -webkit-font-smoothing: none;
+}
+.footer .icon {
+  font-size: 56rpx;
+  color: #000;
+  line-height: 56rpx;
+}
+.main-info-panel {
+  padding: 90rpx 140rpx 20rpx 140rpx;
+  background: #0ed4c1;
+  width: 100%;
+  box-sizing: border-box;
+}
+.total-last {
+  color: #fff;
+  text-align: center;
+  margin-top: 20rpx;
+  overflow: hidden;
+  position: relative;
+}
+.container .total-last.show {
+  max-height: 140rpx;
+  transition: all .3s ease-in;
+}
+.container.hide .total-last.show {
+  max-height: 60rpx;
+  transition: all .3s ease-in;
+}
+.container .total-last .num,
+.container .total-last .date {
+  opacity: 1;
+  transition: all .3s ease-in;
+}
+.container.hide .total-last .num,
+.container.hide .total-last .date {
+  opacity: 0;
+  transition: all .3s ease-in;
+}
+
+.container.hide .total-last-hidewrap .num,
+.container.hide .total-last-hidewrap .date {
+  opacity: 1;
+  transition: all .3s ease-in;
+}
+.container .total-last-hidewrap {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  transition: all .3s ease-in;
+  padding: 2rpx 10rpx;
+  border-radius: 40rpx;
+  background: rgba(0, 0, 0, .2);
+  display: block;
+  width: 300rpx;
+}
+.container .total-last-hidewrap.show {
+  opacity: 0;
+  top: -100%;
+}
+.container.hide .total-last-hidewrap.show {
+  opacity: 1;
+  top: 0;
+}
+.total-last .num{
+  font-size: 70rpx;
+  font-weight: 700;
+  display: block;
+}
+.total-last .date {
+  font-size: 28rpx;
+  display: block;
+}
+.num1,
+.date1 {
+  display: inline-block;
+  font-size: 28rpx;
+}
+.income-cost {
+  width: 100%;
+  box-sizing: border-box;
+  color: #fff;
+  text-align: center;
+  margin-top: 20rpx;
+}
+.income-cost .num {
+  font-size: 40rpx;
+  display: block;
+}
+.income-cost .date {
+  font-size: 28rpx;
+  display: block;
+}
+.income-cost .v-line {
+  width: 2rpx;
+  height: 70rpx;
+  background: #fff;
+}
+.scroll {
+  height: 715rpx; 
+  /* flex: 1; */
+}
+.n {
+  height: 400rpx;
+}
+.list {
+  background: #ffffff;
+  overflow: hidden;
+}
+.list-block {
+  font-size: 0;
+  background: #ffffff;
+}
+.list-block .header-p{
+  width: 100%;
+  display: none;
+  height: 60rpx;
+}
+.list-block .header-p.fixed{
+  display: block;
+  width: 100%;
+  height: 60rpx;
+}
+.list-block__header {
+  height: 60rpx;
+  line-height: 60rpx;
+  background: #f8f8f8;
+  padding: 10rpx 50rpx;
+  font-size: 24rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+.list-block__header .ex-in {
+  /* flex: 1; */
+}
+.list-block__header .ex-in .header-expense{
+   margin-left: 10px;
+   display: inline-block;
+}
+.ex-in .ex-in__wrap {
+  display: inline-block;
+}
+.list-block__header .ex-in .label {
+   display: inline-block;
+}
+.list-block__body {
+  padding: 0 0 0 20rpx;
+}
+
+
+@media screen and (min-width: 414px){
+  .scroll {
+     height: 740rpx; 
+  }
+}

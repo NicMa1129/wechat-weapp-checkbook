@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "my-header": "../../components/header/header",
+    "my-recordPanel": "../../components/recordPanel/recordPanel"
+  }
+}

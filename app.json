@@ -1,0 +1,14 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/typeIn/typeIn",
+    "pages/logs/logs",
+    "pages/detail/detail"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "圈子账本",
+    "navigationBarTextStyle": "black"
+  }
+}

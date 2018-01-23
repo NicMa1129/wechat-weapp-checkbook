@@ -1,0 +1,5 @@
+<view class='header between-flex'>
+  <view class='icon iconfont icon-page'></view>
+  <view class="name">{{name}}</view>
+  <view class='icon iconfont icon-bell'></view>
+</view>

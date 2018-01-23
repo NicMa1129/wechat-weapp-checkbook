@@ -1,0 +1,20 @@
+@import '../../libs/iconfont.wxss';
+@import '../../common/wxss/base.wxss';
+.header {
+  position: fixed;
+  background: rgba(255, 255, 255, 0);
+  padding: 20rpx;
+  width: 100%;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+}
+.name {
+  color: #fff;
+  font-size: 32rpx;
+  /* -webkit-font-smoothing: none; */
+}
+.icon {
+  font-size: 50rpx;
+  color: #fff;
+}

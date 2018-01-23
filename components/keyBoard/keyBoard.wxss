@@ -1,0 +1,122 @@
+/* components/keyBoard/keyBoard.wxss */
+@import '../../common/wxss/base.wxss';
+.keyboard-container.unshow{
+  transition: all .2s ease-in-out;
+  bottom: -440rpx;
+}
+.keyboard-container {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  z-index: 12;
+  transition: all .2s ease-in-out;
+  font-size: 32rpx;
+  background: #000000;
+}
+.tag-panel-box {
+  background: rgba(255, 255, 255, .6);
+  position: relative;
+  background: #ffffff;
+}
+.tag-panel-box:before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 1rpx;
+  background: #c8c7cc;
+}
+.tag-panel {
+  padding: 10rpx 20rpx;
+  border-bottom: 1rpx solid #c8c7cc;
+  display: flex;
+}
+.tag-tool {
+  padding: 20rpx 14rpx;
+  border-right: 1rpx solid #c8c7cc;
+}
+.tag-list {
+  display: inline-block;
+  margin-left: 20rpx;
+  flex: 1;
+  padding: 8rpx 0;
+  overflow-x: auto;
+}
+.tag-list__wrap {
+  overflow: auto;
+}
+.tag-list__wrap .tag-sel {
+  display: inline-block;
+  border: 1rpx solid #efeff4;
+  border-radius: 10rpx;
+  padding: 10rpx 20rpx;
+  background: #e8e8e8;
+}
+.tag-list__wrap .tag-sel:not(:first-child){
+  margin-left: 10rpx;
+}
+.bak-panel{
+  padding: 20rpx 40rpx;
+}
+.bak-panel .button{
+  padding: 10rpx 40rpx;
+  border: 1rpx solid #f6c87a;
+  border-radius: 40rpx;
+  color: #f6c87a;
+  /* line-height: 68rpx; */
+}
+.keyboard-sel,
+.keyboard-double-sel{
+  flex: 1;
+  background: #292a2c;
+  color: #ffffff;
+  font-size: 40rpx;
+  font-weight: 500;
+  height: 110rpx;
+  box-sizing: border-box;
+}
+.keyboard-sel{
+   max-width: 188rpx;
+}
+.keyboard-sel .i {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-top: 22rpx solid transparent;
+  border-bottom: 22rpx solid transparent;
+  border-left: 14rpx solid transparent;
+  border-right: 16rpx solid #f6c87a;
+}
+.keyboard-sel .back-icon{
+  background: #f6c87a;
+  color: #000000;
+  line-height: 38rpx;
+  padding: 0 20rpx 6rpx 20rpx;
+}
+.keyboard-sel .back-icon svg{
+  width: 50rpx;
+  height:30rpx;
+  margin: 0;
+}
+.keyboard-row:not(:last-child) .keyboard-sel:not(:last-child){
+  border-bottom: 1rpx solid #000000;
+  border-right: 1rpx solid #000000;
+}    
+.keyboard-row:not(:last-child) .keyboard-sel:last-child{
+  border-bottom: 1rpx solid #000000;
+}
+.keyboard-row:last-child .keyboard-sel,
+.keyboard-row:last-child .keyboard-double-sel{
+  border-top: 1rpx solid transparent;
+}
+.keyboard-row:last-child .keyboard-sel:nth-child(1),
+.keyboard-row:last-child .keyboard-sel:nth-child(2){
+  border-right: 1rpx solid #000000;
+}
+@media screen and (-webkit-device-pixel-ratio: 3) {
+  .keyboard-sel{
+    max-width: 188.5rpx;
+  }
+}

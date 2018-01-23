@@ -1,0 +1,25 @@
+.center-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.between-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.icon {
+  width: 50rpx;
+  height: 50rpx;
+  font-size: 50rpx;
+  color: #fff;
+  text-align: center;
+}
+.tag-icon {
+  color: #fff;
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 70rpx;
+}

@@ -1,0 +1,23 @@
+/* components/headTab/headTab.wxss */
+.tab-button {
+  font-size: 28rpx;
+  color: #f6c87a;
+  border: 1rpx solid #f6c87a;
+  padding: 0 20rpx;
+  background: #fff;
+  line-height: 50rpx;
+  box-sizing: border-box;
+  display: inline-block;
+}
+.button-income {
+  border-bottom-left-radius: 10rpx;
+  border-top-left-radius: 10rpx;
+}
+.button-expense {
+  border-top-right-radius: 10rpx;
+  border-bottom-right-radius: 10rpx;
+}
+.tab-button.selected {
+  color: #fff;
+  background: #f6c87a;
+}

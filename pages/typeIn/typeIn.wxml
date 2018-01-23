@@ -1,0 +1,22 @@
+<view class="container {{showKb ? 'show' : ''}}" bind:touchstart='touchstart'
+  bind:touchmove='touchmove' bind:touchend='touchend'>
+  <view class='header center-flex'>
+    <my-headTab bindtapIncome="onTapIncome" bindtapExpense="onTapExpense" isExpense="{{isExpense}}"></my-headTab>
+  </view>
+  <view class='input-box between-flex'>
+      <view class='tag-wrap center-flex'>
+        <view class="tag-icon icon iconfont icon-{{selectedTag.icon}}" style="background: #{{selectedTag.color}}"></view>
+        <view class='tag-name'>{{selectedTag.tagName}}</view>
+      </view>
+      <view class='input'>{{curValue}}</view>
+  </view>
+  <view class='tags-list'>
+    <view class='tags-list__row between-flex' wx:for="{{tagsRow}}" wx:for-index="i" wx:for-item="tagRow" wx:key="i">
+      <view class='tags-list__item' wx:for="{{tagRow}}" wx:for-index="j" wx:for-item="tagCel" wx:key="j" data-idx="{{i}}-{{j}}" bindtap='onTapTag'>
+        <view class="tag-icon icon iconfont icon-{{tagCel.icon}}" style="background: #{{tagCel.color}}"></view>
+        <view class="tags-list__item-tagname {{tagCel.selected ? 'selected':''}}">{{tagCel.tagName}}</view>
+      </view>
+    </view>
+  </view>
+  <my-keyBoard baks="{{selectedTag.bakList}}" bindgetValue='getKbValue' bindsubmit='kbSubmit' unshow="{{unshowKb}}" defaultBak="{{defaultBak}}" defaultDate="{{defaultDate}}" defaultValue="{{curValue}}"></my-keyBoard>
+</view>

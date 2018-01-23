@@ -1,0 +1,12 @@
+<!--components/recordPanel/recordPanel.wxml-->
+<view class="record-panel between-flex {{notLast?'notLast':''}}" data-idx="{{idx}}"
+  bindtap='goDetail'>
+  <view class='label center-flex'>
+    <view class="tag-icon icon iconfont icon-{{data.tag.icon}}" style="background: #{{data.tag.color}}"></view>
+    <view class='span'>
+      <text class='type-name'>{{data.tag.tagName}}</text>
+      <text class='bak'>{{data.bak}}</text>
+    </view>
+  </view>
+  <text class="pay-num" style="{{!data.isExpense?'color: #0ed4c1':''}}">{{data.payNum}}</text>
+</view>

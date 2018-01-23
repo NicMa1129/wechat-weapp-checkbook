@@ -1,0 +1,57 @@
+/* pages/detail/detail.wxss */
+ @import "../../libs/iconfont.wxss"; 
+ @import '../../common/wxss/base.wxss';
+.detail-container {
+  background: #f8f8f8;
+}
+.detail-list {
+  background: #ffffff;
+  margin-top: 20rpx;
+}
+.detail-item {
+  padding: 34rpx 60rpx;
+}
+.detail-item:not(:last-child){
+  border-bottom: 1rpx solid #e8e8e8;
+}
+.item-label {
+  display: inline-block;
+  font-size: 32rpx;
+}
+.item-value {
+  font-size: 32rpx;
+  /* line-height: 12rpx; */
+}
+.item-value.label {
+  font-weight: 700
+}
+.bak-box {
+  background: #ffffff;
+  margin-top: 20rpx;
+  padding: 40rpx 60rpx 64rpx 50rpx;
+  font-size: 32rpx;
+}
+.bak-text {
+  color: #9f9f9f;
+  margin-top: 20rpx;
+}
+.operation-box {
+  margin-top: 70rpx;
+  padding: 0 70rpx 60rpx 70rpx;
+}
+.operation-box .button{
+  background: #ffffff;
+  border: 1rpx solid #f6c87a;
+  text-align: center;
+  line-height: 90rpx;
+  height: 90rpx;
+  display: block;
+  width: 100%;
+  border-radius: 10rpx;
+  color: #f6c87a;
+  -webkit-appearance: none;
+  font-size: 32rpx;
+}
+.operation-box .button.edit{
+  margin-bottom: 30rpx;
+}

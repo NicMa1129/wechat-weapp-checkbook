@@ -1,0 +1,42 @@
+<!--pages/detail/detail.wxml-->
+<view class='container detail-container'>
+  <view class='detail-list'>
+    <view class='detail-item between-flex'>
+      <text class='item-label'>记账金额</text>
+      <view class='item-value label'>
+      {{currentBlock !== null?currentBlock.payList[itemIndex].payNum:''}}
+      </view>
+    </view>
+    <view class='detail-item between-flex'>
+      <text class='item-label'>分类</text>
+      <view class='item-value'>
+        {{currentBlock !== null?currentBlock.payList[itemIndex].isExpense?'支出':'收入':''}}
+        >{{currentBlock !== null?currentBlock.payList[itemIndex].tag.tagName:''}}
+      </view>
+    </view>
+    <view class='detail-item between-flex'>
+      <text class='item-label'>账户</text>
+      <text class='item-value'>现金</text>
+    </view>
+    <view class='detail-item between-flex'>
+      <text class='item-label'>记录人</text>
+      <text class='item-value'>我</text>
+    </view>
+    <view class='detail-item between-flex'>
+      <text class='item-label'>记账时间</text>
+      <view class='item-value'>
+        {{currentBlock !== null?currentBlock.header.date:''}}
+      </view>
+    </view>
+  </view>
+  <view class='bak-box'>
+    <text>备注</text>
+    <view class='bak-text'>
+      {{currentBlock !== null?currentBlock.payList[itemIndex].bak !== ""?currentBlock.payList[itemIndex].bak:"未填写":''}}
+    </view>
+  </view>
+  <view class='operation-box'>
+    <view class='button edit' bindtap='onTapEdit'>编辑</view>
+    <view class='button del' bindtap='onTapDel'>删除</view>
+  </view>
+</view>
