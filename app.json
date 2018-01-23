@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/typeIn/typeIn",
     "pages/logs/logs",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/search/search"
   ],
   "window": {
     "backgroundTextStyle": "light",

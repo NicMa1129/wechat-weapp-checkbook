@@ -50,6 +50,6 @@
   <view class='footer'>
     <view class='icon iconfont icon-pie1'></view>
     <view class='write' bindtap='doRecord'>记</view>
-    <view class='icon iconfont icon-ellipsis-v'></view>
+    <view class='icon iconfont icon-ellipsis-v' bindtap='onTapMore'></view>
   </view>
 </view>

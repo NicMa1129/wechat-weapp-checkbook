@@ -79,6 +79,23 @@ const pageConfig = {
       // this.getUserInfo()
     }
   },
+  onTapMore(){
+    wx.showActionSheet({
+      itemList: ['搜索账单', '共享此账本', '更换背景', '更多'],
+      success: res => {
+        let index = res.tapIndex
+        switch (index){
+          case 0:
+            wx.navigateTo({
+              url: '/pages/search/search'
+            })
+            break
+          default:
+            break
+        }
+      }
+    })
+  },
   getUserInfo(){
     wx.getUserInfo({
       success: res => {

@@ -1,0 +1,35 @@
+<!--pages/search/search.wxml-->
+<view class='container search-container'>
+  <my-searchbar bind:onChange='onChange' vaule="{{searchValue}}"></my-searchbar>
+  <view class='content-box'>
+    <view class='res-box' wx:if="{{showRes}}">
+      <block wx:if="{{res.length > 0}}">
+        <view class='res-total-header between-flex'>
+          <view class='p'>共{{totalNum}}条</view>
+          <view class='p'>总支出：{{totalExpense}}</view>
+        </view>
+        <view class='res-item-wrap'>
+          <view class='res-item' wx:for="{{res}}" wx:for-item="block" wx:for-index="blockIndex" wx:key="index">
+            <view class='res-item__header'>{{block.date}}</view>
+            <view class='res-item__list'>
+              <block wx:for="{{block.list}}" wx:for-item="item" wx:for-index="itemIndex" wx:key="itemIndex">
+                <my-recordPanel idx="{{item.id}}" data="{{item.item}}" notLast="{{block.list.length == (itemIndex + 1)?false:true}}"></my-recordPanel>
+              </block>
+            </view>
+          </view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class='nores'>没找到哦，换个关键词试试吧</view>
+      </block>
+    </view>
+    <view class='search-tag-box' wx:else>
+      <view class='tag-button' data-value="月份" bindtap='tagSearch'>月份</view>
+      <view class='tag-button' data-value="吃喝" bindtap='tagSearch'>吃喝</view>
+      <view class='tag-button' data-value="红包" bindtap='tagSearch'>红包</view>
+      <view class='tag-button' data-value="工资" bindtap='tagSearch'>工资</view>
+      <view class='tag-button' data-value="午餐" bindtap='tagSearch'>午餐</view>
+      <view class='tag-button' data-value="交通" bindtap='tagSearch'>交通</view>
+    </view>
+  </view>
+</view>

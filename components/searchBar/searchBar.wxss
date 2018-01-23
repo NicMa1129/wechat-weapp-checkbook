@@ -1,0 +1,45 @@
+/* components/searchBar/searchBar.wxss */
+@import '../../libs/iconfont.wxss';
+@import '../../common/wxss/base.wxss';
+.search-bar-container {
+  padding: 16rpx 20rpx;
+  border-bottom: 1rpx solid #e7e7e7;
+  overflow: hidden;
+}
+.input-wrap {
+  flex: 1;
+  background: #e8e8e8;
+  border-radius: 10rpx;
+  padding: 0 20rpx;
+  position: relative;
+  transition: all .3 ease-in;
+}
+.input-wrap input {
+  padding: 10rpx 60rpx;
+  background: #e8e8e8;
+  height: 60rpx;
+  box-sizing: border-box;
+  font-size: 28rpx;
+}
+.search-icon {
+  position: absolute;
+  top: 12rpx;
+  left: 30rpx;
+  z-index: 2;
+  font-size: 35rpx;
+  color: #bbb;
+}
+.cancel {
+  font-size: 37rpx;
+  color: #f6c87a;
+  margin-left: 20rpx;
+  transition: all .3 ease-in;
+  margin-right: -90rpx;
+  overflow: hidden;
+  transition-delay: .1s;
+}
+.cancel.show {
+  margin-right: 0;
+  transition: all .3 ease-in;
+  transition-delay: .1s;
+}

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "my-searchbar": "../../components/searchBar/searchBar",
+    "my-recordPanel": "../../components/recordPanel/recordPanel"
+  }
+}

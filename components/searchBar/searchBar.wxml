@@ -1,0 +1,8 @@
+<!--components/searchBar/searchBar.wxml-->
+<view class='search-bar-container between-flex'>
+  <view class='input-wrap'>
+    <view class='search-icon iconfont icon-sousuo'></view>
+    <input type='text' placeholder='类别/备注/金额' focus="true" cursor="0" bindfocus='onFocus' bindblur='onBlur' bindinput='onInput' value="{{vaule}}"></input>
+  </view>
+  <view class="cancel {{isFocus?'show':''}}">取消</view>
+</view>

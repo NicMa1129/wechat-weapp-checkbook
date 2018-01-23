@@ -23,7 +23,9 @@ Component({
   data: {
 
   },
-
+  ready(){
+    console.log(this.data.data)
+  },
   /**
    * 组件的方法列表
    */

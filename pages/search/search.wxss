@@ -1,0 +1,50 @@
+/* pages/search/search.wxss */
+.search-container {
+  display: flex;
+  flex-direction: column;
+}
+.content-box {
+  flex: 1;
+}
+.res-total-header {
+  background: #f8f8f8;
+  border-bottom: 1rpx solid #e7e7e7;
+  padding: 10rpx 20rpx 10rpx 40rpx;
+}
+.res-total-header .p {
+  display: inline-block;
+  margin: 0;
+  font-size: 24rpx;
+}
+.res-box {
+  display: flex;
+  flex-direction: column;
+}
+.res-item-wrap {
+  flex: 1;
+  overflow: auto;
+}
+.res-item__header {
+  background: #f8f8f8;
+  padding: 10rpx 40rpx;
+  font-size: 24rpx;
+  color: #9f9f9f;
+}
+.nores {
+  margin-top:200rpx;
+  font-size: 28rpx;
+  text-align: center;
+}
+.search-tag-box {
+  padding: 0 120rpx 0 40rpx;
+}
+.tag-button{
+  padding: 12rpx 30rpx;
+  background: #e8e8e8;
+  font-size: 28rpx;
+  list-style: none;
+  display: inline-block;
+  border-radius: 6rpx;
+  margin-top: 20rpx;
+  margin-right: 20rpx;
+}
