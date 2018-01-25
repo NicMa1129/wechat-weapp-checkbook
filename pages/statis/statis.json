@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "my-headTab": "../../components/headTab/headTab"
+  }
+}

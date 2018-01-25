@@ -28,7 +28,7 @@ Component({
    */
   methods: {
     onIncome(e){
-      if(this.data.income == false){
+      if(this.data.income === false){
         this.triggerEvent('tapIncome', e.detail)
         this.setData({
           income: true,
@@ -37,7 +37,7 @@ Component({
       }
     },
     onExpense(e){
-      if(this.data.expense == false){
+      if(this.data.expense === false){
         this.triggerEvent('tapExpense', e.detail)
         this.setData({
           income: false,

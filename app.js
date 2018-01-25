@@ -5,6 +5,18 @@ const { Provider, connect } = WeAppRedux;
 
 App(Provider(store)({
   onLaunch: function () {
+    let that = this
+    wx.getSystemInfo({
+      //获取系统信息成功，将系统窗口的宽高赋给页面的宽高  
+      success: function (res) {
+        that.globalData.width = res.windowWidth
+        // console.log(that.width)   375
+        that.globalData.height = res.windowHeight
+        // console.log(that.height)  625
+        // 这里的单位是PX，实际的手机屏幕有一个Dpr，这里选择iphone，默认Dpr是2
+      }
+    })
+
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -53,6 +65,8 @@ App(Provider(store)({
   },
   globalData: {
     userInfo: null,
-    connect: connect
+    connect: connect,
+    width: 0,
+    height: 0
   }
 }))

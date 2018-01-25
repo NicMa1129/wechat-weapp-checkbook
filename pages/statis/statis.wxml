@@ -1,0 +1,35 @@
+<!--pages/statis/statis.wxml-->
+<view class='container statis-container'>
+  <view class='header center-flex'>
+    <my-headTab bindtapIncome="onTapIncome" bindtapExpense="onTapExpense" isExpense="{{isExpense}}"></my-headTab>
+  </view>
+  <view class='month-select-panel center-flex'>
+    <view class='arrow arrow-l' bindtap='preMonth'></view>
+    <view class='span'>
+      <view class='p'>{{monthShow}}-01</view>
+      <view class='label'>至</view>
+      <view class='p'>{{monthShow}}-30</view>
+    </view>
+    <view class='arrow arrow-r' bindtap='lastMonth'></view>
+  </view>
+  <view class='char-box'>
+    <canvas canvas-id="chart"></canvas>
+    <view class='total-label'>
+      <view class='label'>{{totalCost}}</view>
+      <view class='p'>总支出</view>
+    </view>
+  </view>
+  <scroll-view hidden="{{isEmpty}}" class='charts-label-list' scroll-y="{{true}}" >
+    <view class='scroll-wrap'>
+      <view class='charts-label-list__item between-flex' wx:for="{{chartData}}" wx:for-index="idx" wx:key="idx">
+        <view class='tagName-icon center-flex'>
+          <view class='tag-icon icon iconfont icon-{{chartDataItem[idx][1].tag.icon}}' style="background: #{{chartDataItem[idx][1].tag.color}}"></view>
+          <view class='span'>{{item.name}}</view>
+        </view>
+        <view class='percent'>{{item.y}}%</view>
+        <view class='num'>{{chartDataItem[idx][1].cost}}</view>
+      </view>
+    </view>
+  </scroll-view>
+  <view hidden="{{!isEmpty}}" class='is-empty'>暂无可统计账单</view>
+</view>

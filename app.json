@@ -4,7 +4,8 @@
     "pages/typeIn/typeIn",
     "pages/logs/logs",
     "pages/detail/detail",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/statis/statis"
   ],
   "window": {
     "backgroundTextStyle": "light",

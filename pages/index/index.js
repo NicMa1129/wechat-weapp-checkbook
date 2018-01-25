@@ -79,6 +79,11 @@ const pageConfig = {
       // this.getUserInfo()
     }
   },
+  goStatis(){
+    wx.navigateTo({
+      url: '/pages/statis/statis'
+    })
+  },
   onTapMore(){
     wx.showActionSheet({
       itemList: ['搜索账单', '共享此账本', '更换背景', '更多'],
