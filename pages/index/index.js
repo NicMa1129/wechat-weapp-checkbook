@@ -13,7 +13,13 @@ const pageConfig = {
     canIUse: wx.canIUse('open-type.getUserInfo'),
     hide: false,
     lastScrollTop: -1,
-    accountList: {}
+    accountList: {},
+    showBgWall: false,
+    bgUrl: '../../image/bg.jpg',
+    bgList: [],
+    showPicClip: false,
+    picW: 0,
+    picH: 0
   },
   onScroll(e) {
     // console.log(e.detail.scrollTop)
@@ -43,6 +49,8 @@ const pageConfig = {
   },
   onLoad: function () {
     this.getUserInfo()
+    this.getLocalImg()
+    this.ctx = wx.createCanvasContext('picClip')
     // if (app.globalData.userInfo) {
     //   this.setData({
     //     userInfo: app.globalData.userInfo,
@@ -70,6 +78,27 @@ const pageConfig = {
     //   })
     // }
   },
+  getLocalImg(){
+    let _this = this
+    wx.getSavedFileList({
+      success: res => {
+        // console.log(res)
+        let path
+        if (res.fileList.length === 0){
+          path = '../../image/bg.jpg'
+        }else{
+          let picList = res.fileList.sort((a, b) => a.createTime < b.createTime)
+          // console.log(picList)
+          let idx = wx.getStorageSync('__bg_index__') || 0
+          path = picList[idx].filePath
+        }
+        _this.setData({
+          bgUrl: path,
+          bgList: res.fileList
+        })
+      }
+    })
+  },
   doRecord(){
     if (app.globalData.userInfo){
       wx.navigateTo({
@@ -95,36 +124,229 @@ const pageConfig = {
               url: '/pages/search/search'
             })
             break
+          case 2:
+            this.setData({
+              showBgWall: true
+            })
+            break
+          case 1:
+            this.setData({
+              showPicClip: true
+            })
+            this.initPicClip()
+            break
           default:
             break
         }
       }
     })
   },
-  getUserInfo(){
-    wx.getUserInfo({
+  onPageScroll(){},
+  initPicClip(){
+    let _this = this
+    wx.getImageInfo({
+      src: _this.tmpPic,
       success: res => {
-        app.globalData.userInfo = res.userInfo
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
+        // console.log(res)
+        _this.setData({
+          picW: res.width,
+          picH: res.height
         })
-        console.log(app.globalData.userInfo)
-        this.store.dispatch(fetchList())
-        console.log(this.data.accountList)
-        let list = this.data.accountList.list.slice()
-        list.forEach(block => {
-          block.header.date = dateFormat(block.header.date)
-        })
-        let accountList = Object.assign({}, this.data.accountList, list)
-        this.setData({
-          accountList: accountList
+        _this.drewPic()
+      }
+    })
+  },
+  drewPic(dx = 0, dy = 150){
+    let dWidth = app.globalData.width
+    let sWidth = this.data.picW, sHeight = this.data.picH
+    let r = dWidth / sWidth
+    let dHeight = parseInt(r * sHeight)
+
+    this.ctx.setFillStyle('#4f4f4f')
+    this.ctx.fillRect(0, 0, dWidth, app.globalData.height)
+
+    this.ctx.drawImage(this.tmpPic, dx, dy, dWidth, dHeight)
+
+    this.ctx.setFillStyle('rgba(0, 0, 0, .7)')
+    this.ctx.fillRect(0, 0, dWidth, 150)
+
+    this.ctx.fillRect(0, 0.75 * dWidth + 150, dWidth, app.globalData.height - 0.75 * dWidth - 150)
+
+    this.ctx.setFontSize('16')
+    this.ctx.setFillStyle('#ffffff')
+    this.ctx.fillText('取消', 30, app.globalData.height - 30)
+    this.ctx.fillText('选取', app.globalData.width - 60, app.globalData.height - 30)
+    this.ctx.draw()
+  },
+  commitPicClip(){
+    wx.showLoading({
+      title: '加载中...',
+      mask: true,
+      success: () => {
+        let _this = this
+        let dWidth = app.globalData.width
+        let sWidth = this.data.picW, sHeight = this.data.picH
+        let r = dWidth / sWidth
+        let dHeight = parseInt(r * sHeight)
+
+        this.lastDisX = this.lastDisX || 0
+        this.lastDisY = this.lastDisY || 150
+
+        this.ctx.setFillStyle('#4f4f4f')
+        this.ctx.fillRect(0, 0, dWidth, app.globalData.height)
+
+        this.ctx.drawImage(this.tmpPic, 0, this.lastDisY, dWidth, dHeight)
+
+        this.ctx.setFillStyle('rgba(0, 0, 0, .7)')
+        this.ctx.fillRect(0, 0, dWidth, 150)
+
+        this.ctx.fillRect(0, 0.75 * dWidth + 150, dWidth, app.globalData.height - 0.75 * dWidth - 150)
+
+        this.ctx.setFontSize('16')
+        this.ctx.setFillStyle('#ffffff')
+        this.ctx.fillText('取消', 30, app.globalData.height - 30)
+        this.ctx.fillText('选取', app.globalData.width - 60, app.globalData.height - 30)
+
+        this.ctx.draw(false, _this.savePicFromCanvas)
+      }
+    })
+  },
+  savePicFromCanvas(){
+    let _this = this
+    wx.canvasToTempFilePath({
+      canvasId: 'picClip',
+      x: 0,
+      y: 150,
+      height: 0.75 * app.globalData.width,
+      success: res => {
+        // console.log(res)
+        let tmpPath = res.tempFilePath
+
+        wx.saveFile({
+          tempFilePath: tmpPath,
+          success: r => {
+            // console.log(r)
+            let filePath = r.savedFilePath
+            wx.hideLoading()
+            _this.setData({
+              bgUrl: filePath,
+              showBgWall: false,
+              showPicClip: false
+            })
+            // _this.getLocalImg()
+          }
         })
       }
     })
   },
-  globalData: {
-    userInfo: {}
+  cancelPicClip(){
+    this.setData({
+      showPicClip: false
+    })
+  },
+  touchStartPicClip(e){
+    // console.log(e)
+    let x = e.touches[0].x, y = e.touches[0].y
+
+    if (x > 30 && x < 70 && y > (app.globalData.height - 60) && y < (app.globalData.height - 30)){//取消
+      console.log("111")
+      // this.cancelPicClip()
+    } else if (x > (app.globalData.width - 60) && x < (app.globalData.width - 30) && y > (app.globalData.height - 60) && y < (app.globalData.height - 30)){//选取
+      console.log("222")
+      // this.commitPicClip()
+    }else{
+      console.log("333")
+      this.lastDisX = this.lastDisX || 0
+      this.lastDisY = this.lastDisY || 150
+      this.sPointX = x - this.lastDisX
+      this.sPointY = y - this.lastDisY
+    }
+  },
+  touchMovePicClip(e){
+    // console.log(e)
+    let x = e.touches[0].x, y = e.touches[0].y
+    let distanceX = x - this.sPointX, distanceY = y - this.sPointY
+
+    this.drewPic(0, distanceY)
+  },
+  touchEndPicClip(e){
+    // console.log(e)
+    let x = e.changedTouches[0].x, y = e.changedTouches[0].y
+
+    if (x > 30 && x < 70 && y > (app.globalData.height - 60) && y < (app.globalData.height - 30)) {//取消
+      this.cancelPicClip()
+    } else if (x > (app.globalData.width - 60) && x < (app.globalData.width - 30) && y > (app.globalData.height - 60) && y < (app.globalData.height - 30)) {//选取
+      this.commitPicClip()
+    } else {
+      this.lastDisX = x - this.sPointX
+      this.lastDisY = y - this.sPointY
+    }
+
+    // console.log("lastDisX = " + this.lastDisX)
+    // console.log("lastDisY = " + this.lastDisY)
+  },
+  closeBgWall(){
+    this.setData({
+      showBgWall: false
+    })
+  },
+  chooseImg(){
+    let _this = this
+    wx.chooseImage({
+      count: 1,
+      success: res => {
+        // console.log(res)
+        let tempFilePaths = res.tempFilePaths
+        _this.tmpPic = tempFilePaths[0]
+        _this.setData({
+          // bgUrl: tempFilePaths[0],
+          showPicClip: true
+        })
+        
+        _this.initPicClip()
+      }
+    })
+  },
+  changeImg(e){
+    let src = e.currentTarget.dataset.src
+    let idx = parseInt(e.currentTarget.dataset.idx)
+    this.setData({
+      bgUrl: src,
+      showBgWall: false
+    })
+    wx.setStorage({
+      key: '__bg_index__',
+      data: idx
+    })
+  },
+  getUserInfo(){
+    if (app.globalData.userInfo){
+      this.setData({
+        userInfo: app.globalData.userInfo,
+        hasUserInfo: true
+      })
+    }else{
+      wx.getUserInfo({
+        success: res => {
+          app.globalData.userInfo = res.userInfo
+          this.setData({
+            userInfo: res.userInfo,
+            hasUserInfo: true
+          })
+        }
+      })
+    }
+    
+    this.store.dispatch(fetchList())
+    console.log(this.data.accountList)
+    let list = this.data.accountList.list.slice()
+    list.forEach(block => {
+      block.header.date = dateFormat(block.header.date)
+    })
+    let accountList = Object.assign({}, this.data.accountList, list)
+    this.setData({
+      accountList: accountList
+    })
   }
 }
 

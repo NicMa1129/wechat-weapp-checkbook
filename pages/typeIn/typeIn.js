@@ -119,17 +119,25 @@ const pageConfig = {
 
     if (!result.isEdit){
       if (parseFloat(result.value) > 0){
-        this.store.dispatch(addAccount({
-          value: result.value,
-          date: result.date,
-          bak: result.bak,
-          tag: {
-            tagName: tag.tagName,
-            icon: tag.icon,
-            color: tag.color
-          },
-          isExpense: result.isExpense
-        }))
+        let _this = this
+        wx.showLoading({
+          title: '加载中...',
+          mast: true,
+          success: () => {
+            _this.store.dispatch(addAccount({
+              value: result.value,
+              date: result.date,
+              bak: result.bak,
+              tag: {
+                tagName: tag.tagName,
+                icon: tag.icon,
+                color: tag.color
+              },
+              isExpense: result.isExpense
+            }))
+          }
+        })
+        wx.hideLoading()
         wx.navigateTo({
           url: '/pages/index/index'
         })

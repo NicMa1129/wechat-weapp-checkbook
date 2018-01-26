@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "my-header": "../../components/header/header",
-    "my-recordPanel": "../../components/recordPanel/recordPanel"
+    "my-recordPanel": "../../components/recordPanel/recordPanel",
+    "my-picClip": "../../components/picClip/picClip"
   }
 }

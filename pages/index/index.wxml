@@ -1,7 +1,8 @@
 <!--index.wxml-->
-<view class="container {{hide ? 'hide' : ''}}">
+<view class="container {{hide ? 'hide' : ''}} home-container">
   <my-header name="{{userInfo.nickName}}"></my-header> 
-  <view class='main-info-panel'>
+  <view class='main-info-panel'> 
+    <image class='bg' src="{{bgUrl}}"></image>
     <view class="total-last show">
       <text class='num'>{{accountList.mainInfo.totalBudget}}</text>
       <text class='date'>{{accountList.mainInfo.lastDate}}月预算结余</text>
@@ -10,7 +11,7 @@
         <text class='num1'>{{accountList.mainInfo.totalBudget}}</text>
       </view>
     </view>
-    <view class='income-cost between-flex'>
+    <view class='income-cost'>
       <view class='income'>
         <text class='num'>{{accountList.mainInfo.income}}</text>
         <text class='date'>{{accountList.mainInfo.lastDate}}月收入</text>
@@ -52,4 +53,33 @@
     <view class='write' bindtap='doRecord'>记</view>
     <view class='icon iconfont icon-ellipsis-v' bindtap='onTapMore'></view>
   </view>
+  <view class="bg-wall {{showBgWall ? 'show':''}}">
+    <view class='title'>
+      <view class='text'>背景图</view>
+      <view class='close icon iconfont icon-close' bindtap='closeBgWall'></view>
+    </view>
+    <scroll-view class="bgwall-scroll" scroll-x>
+      <view class='bgwall-scroll__wrap' style="width: {{(bgList.length + 1) * 100 + 20}}px">
+        <view class='bg-block bg-block-add' bindtap='chooseImg'></view>
+        <view class='bg-block' wx:for="{{bgList}}" wx:for-index="idx" wx:key="idx" data-src="{{item.filePath}}" data-idx="{{idx}}" bindtap='changeImg'>
+           <image src="{{item.filePath}}" class='bg-preview'></image> 
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <canvas class="{{showPicClip ? 'show' : ''}}" canvas-id='picClip' disable-scroll="true" bindtouchstart='touchStartPicClip' bindtouchmove='touchMovePicClip' bindtouchend='touchEndPicClip'></canvas>
+
+  <!-- <view class="pic-clip-container {{showPicClip ? 'show' : ''}}" bindtouchstart='touchStartPicClip' bindtouchmove='touchMovePicClip' bindtouchend='touchEndPicClip'>
+    <view class='pic-clip-wrap'>
+      <canvas canvas-id='picClip' disable-scroll="true"></canvas>
+      <view class='cover'></view>
+      <view class='mask head'></view>
+      <view class='carma'></view>
+      <view class='mask foot'></view>
+      <view class='tool between-flex'>
+        <view class='p' bindtap='cancelPicClip'>取消</view>
+        <view class='p' bindtap='commitPicClip'>选取</view>
+      </view>
+    </view> 
+  </view> -->
 </view>
