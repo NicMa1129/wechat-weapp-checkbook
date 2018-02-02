@@ -31,7 +31,7 @@ Component({
    */
   methods: {
     goDetail(e){
-      console.log(e)
+      // console.log(e)
       let id = e.currentTarget.dataset.idx
       wx.navigateTo({
         url: '/pages/detail/detail?id='+id

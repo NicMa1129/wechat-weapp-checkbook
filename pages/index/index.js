@@ -353,7 +353,7 @@ const pageConfig = {
     }
     
     this.store.dispatch(fetchList())
-    console.log(this.data.accountList)
+    // console.log(this.data.accountList)
     let list = this.data.accountList.list.slice()
     list.forEach(block => {
       block.header.date = dateFormat(block.header.date)

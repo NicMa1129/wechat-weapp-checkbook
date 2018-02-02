@@ -30,7 +30,7 @@ Component({
       dayList: dayList
     })
     this.getToday()
-    console.log(this.data.dayList)
+    // console.log(this.data.dayList)
   },
   /**
    * 组件的方法列表
