@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "my-calPanel": "../../components/calPanel/calPanel",
+    "my-recordPanel": "../../components/recordPanel/recordPanel"
+  }
+}

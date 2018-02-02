@@ -1,0 +1,22 @@
+<!--components/calPanel/calPanel.wxml-->
+<view class='cal-panel-wrap'>
+  <view class='cal-header between-flex'>
+    <view class='arrow arrow-l' bindtap='preMonth'></view>
+    <view class='title'>{{curYear}}年{{curMonth + 1}}月</view>
+    <view class='arrow arrow-r' bindtap='lastMonth'></view>
+  </view>
+  <view class='cal-body'>
+    <view class='weeks'>
+      <view class='item' wx:for="{{dayNames}}" wx:for-index="idx" wx:key="idx">
+        {{dayNames[(idx + weekStartOn) % 7]}}
+      </view>
+    </view>
+    <view class='dates'>
+      <view class="item {{today == item.date ?'today':''}}" wx:for="{{dayList}}" wx:for-index="idx" wx:key="idx">
+        <view class='date-num'>{{item.status ? item.showDay : ''}}</view>
+        <view class='is-today' wx:if="{{item.status ? today == item.date ? true: false : false}}"></view>
+        <view class="is-event {{currentSelectDay === item.date ? 'current':''}}" wx:if="{{item.status ? (item.eventsArr.length > 0) ? true : false : false}}" data-idx="{{idx}}" bindtap="selectEventDay"></view>
+      </view>
+    </view>
+  </view>
+</view>

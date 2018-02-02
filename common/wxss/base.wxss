@@ -41,12 +41,12 @@
   border-right-color: transparent;
 }
 .arrow.arrow-l::before {
-  transform: translate(0, -30%) rotateZ(-45deg);
+  transform: translate(10rpx, -30%) rotateZ(-45deg);
   top: 40%;
   left: 0;
 }
 .arrow.arrow-r::before {
-  transform: translate(0, -30%) rotateZ(135deg);
+  transform: translate(-10rpx, -30%) rotateZ(135deg);
   top: 40%;
   left: 50%;
 }

@@ -172,6 +172,7 @@
 }
 .scroll {
   height: 700rpx; 
+  background: #ffffff;
   /* flex: 1; */
 }
 .n {

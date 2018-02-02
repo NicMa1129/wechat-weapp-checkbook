@@ -98,7 +98,7 @@ const pageConfig = {
     this.setData({
       curValue: value
     })
-    console.log(value)
+    // console.log(value)
   },
   kbSubmit(e){
     let kbValue = e.detail

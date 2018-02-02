@@ -1,0 +1,29 @@
+<!--pages/calender/calender.wxml-->
+<view class='container calender-container'>
+  <my-calPanel list="{{accountList.list}}" bindselectEventDay='handSelectEventDay'></my-calPanel>
+  <scroll-view class='scroll-container' scroll-y>
+    <view class='list' wx:for="{{currentList}}" wx:for-item="block" wx:for-index="idx" wx:key="idx">
+      <view class='list-block'>
+        <view class='header-p'></view>
+        <view class='list-block__header'>
+          <text>{{block.header.date}}</text>
+          <view class='ex-in'>
+            <view class='ex-in__wrap' wx:if="{{block.header.totalIncome !== 0}}">
+              <text class='label'>收入：</text>
+              <text>{{block.header.totalIncome}}</text>
+            </view>
+            <view class='ex-in__wrap' wx:if="{{block.header.totalExpense !== 0}}" class='header-expense'>
+              <text class='label'>支出：</text>
+              <text>{{block.header.totalExpense}}</text>
+            </view>
+          </view>
+        </view>
+        <view class='list-block__body'>
+          <block wx:for="{{block.payList}}" wx:for-index="i" wx:for-item="item" wx:key="i">
+            <my-recordPanel idx="{{idx}}_{{i}}" data="{{item}}" notLast="{{block.payList.length == (i + 1)?false:true}}"></my-recordPanel>
+          </block>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

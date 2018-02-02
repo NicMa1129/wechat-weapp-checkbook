@@ -17,8 +17,14 @@ const pageConfig = {
   },
   onLoad(){
     let { accountList } = this.data
-    let year = new Date(accountList.list[0].header.date).getFullYear()
-    let month = new Date(accountList.list[0].header.date).getMonth()
+    let year, month
+    if (accountList.list.length === 0){
+      year = new Date().getFullYear()
+      month = new Date().getMonth()
+    }else{
+      year = new Date(accountList.list[0].header.date).getFullYear()
+      month = new Date(accountList.list[0].header.date).getMonth()
+    }
     this.initData(accountList, year, month)
     this.setData({
       year: year,

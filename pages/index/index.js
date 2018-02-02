@@ -124,16 +124,22 @@ const pageConfig = {
               url: '/pages/search/search'
             })
             break
+          case 1:
+            wx.showToast({
+              title: '敬请期待！',
+              icon: 'none'
+            })
+            break
           case 2:
             this.setData({
               showBgWall: true
             })
             break
-          case 1:
-            this.setData({
-              showPicClip: true
+          case 3:
+            wx.showToast({
+              title: '敬请期待！',
+              icon: 'none'
             })
-            this.initPicClip()
             break
           default:
             break
@@ -152,11 +158,22 @@ const pageConfig = {
           picW: res.width,
           picH: res.height
         })
-        _this.drewPic()
+        _this.drewPic(0, _this.distanceY)
+        _this.setData({
+          // bgUrl: tempFilePaths[0],
+          showPicClip: true
+        })
+        // setTimeout(() => {
+        //   setInterval(() => {
+        //     _this.drewPic(0, _this.distanceY)
+        //   }, 1000 / 60)
+        // }, 1000)
+        // requestAnimationFrame(_this.drewPic())
       }
     })
   },
-  drewPic(dx = 0, dy = 150){
+  drewPic(dx = 0, dy = this.distanceY){
+    this.erase()
     let dWidth = app.globalData.width
     let sWidth = this.data.picW, sHeight = this.data.picH
     let r = dWidth / sWidth
@@ -177,6 +194,7 @@ const pageConfig = {
     this.ctx.fillText('取消', 30, app.globalData.height - 30)
     this.ctx.fillText('选取', app.globalData.width - 60, app.globalData.height - 30)
     this.ctx.draw()
+    // requestAnimationFrame(this.drewPic())
   },
   commitPicClip(){
     wx.showLoading({
@@ -244,18 +262,18 @@ const pageConfig = {
       showPicClip: false
     })
   },
+  erase(){
+    this.ctx.rect(0, 0, app.globalData.width, app.globalData.height)
+  },
   touchStartPicClip(e){
     // console.log(e)
     let x = e.touches[0].x, y = e.touches[0].y
 
     if (x > 30 && x < 70 && y > (app.globalData.height - 60) && y < (app.globalData.height - 30)){//取消
-      console.log("111")
       // this.cancelPicClip()
     } else if (x > (app.globalData.width - 60) && x < (app.globalData.width - 30) && y > (app.globalData.height - 60) && y < (app.globalData.height - 30)){//选取
-      console.log("222")
       // this.commitPicClip()
     }else{
-      console.log("333")
       this.lastDisX = this.lastDisX || 0
       this.lastDisY = this.lastDisY || 150
       this.sPointX = x - this.lastDisX
@@ -266,7 +284,8 @@ const pageConfig = {
     // console.log(e)
     let x = e.touches[0].x, y = e.touches[0].y
     let distanceX = x - this.sPointX, distanceY = y - this.sPointY
-
+    // this.distanceY = y - this.sPointY
+    // console.log(this.distanceY)
     this.drewPic(0, distanceY)
   },
   touchEndPicClip(e){
@@ -292,17 +311,13 @@ const pageConfig = {
   },
   chooseImg(){
     let _this = this
+    this.distanceY = 150
     wx.chooseImage({
       count: 1,
       success: res => {
         // console.log(res)
         let tempFilePaths = res.tempFilePaths
         _this.tmpPic = tempFilePaths[0]
-        _this.setData({
-          // bgUrl: tempFilePaths[0],
-          showPicClip: true
-        })
-        
         _this.initPicClip()
       }
     })

@@ -18,3 +18,9 @@
   font-size: 50rpx;
   color: #fff;
 }
+.rili-btn {
+  position: absolute;
+  top: 18rpx;
+  right: 100rpx;
+  z-index: 2;
+}

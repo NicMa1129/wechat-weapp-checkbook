@@ -1,0 +1,50 @@
+/* pages/calender/calender.wxss */
+.scroll-container {
+  height: 494rpx;
+  overflow: hidden;
+}
+.list {
+  background: #ffffff;
+  overflow: hidden;
+}
+.list-block {
+  font-size: 0;
+  background: #ffffff;
+}
+.list-block .header-p{
+  width: 100%;
+  display: none;
+  height: 60rpx;
+}
+.list-block .header-p.fixed{
+  display: block;
+  width: 100%;
+  height: 60rpx;
+}
+.list-block__header {
+  height: 60rpx;
+  line-height: 60rpx;
+  background: #f8f8f8;
+  padding: 10rpx 50rpx;
+  font-size: 24rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+.list-block__header .ex-in {
+  /* flex: 1; */
+}
+.list-block__header .ex-in .header-expense{
+   margin-left: 10px;
+   display: inline-block;
+}
+.ex-in .ex-in__wrap {
+  display: inline-block;
+}
+.list-block__header .ex-in .label {
+   display: inline-block;
+}
+.list-block__body {
+  padding: 0 0 0 20rpx;
+}
